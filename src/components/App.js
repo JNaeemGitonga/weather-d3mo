@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getWeather} from '../actions';
 import DateTime from './date-time';
+import Search from './search';
 
 class App extends Component {
 	componentWillMount() {
@@ -13,6 +14,7 @@ class App extends Component {
 		<div className="App">
 			LOOK I work:
 			<DateTime />
+			<Search />
 		</div>
 		);
 	}

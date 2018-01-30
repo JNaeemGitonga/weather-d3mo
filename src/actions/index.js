@@ -20,7 +20,10 @@ export const getCityDetails = (city,state) => dispatch => {
             console.log(res.body.current_observation)
             dispatch(cityCondition(res.body.current_observation))
         })
-    }
+        .catch(err => {
+            console.error(err)
+        })
+}
 
 export const getWeather = () => dispatch => {
     request 
@@ -39,3 +42,10 @@ export const updateTime = time => ({
     type:UPDATE_TIME,
     time
 })
+
+
+export const typeOfSearch = data => dispatch => {
+    if(typeof data === 'number') {
+
+    }
+}

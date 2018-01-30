@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getWeather} from '../actions';
-import './App.css';
+import DateTime from './date-time';
 
 class App extends Component {
 	componentWillMount() {
@@ -12,6 +12,7 @@ class App extends Component {
 		return (
 		<div className="App">
 			LOOK I work:
+			<DateTime />
 		</div>
 		);
 	}

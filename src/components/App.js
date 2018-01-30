@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {getWeather} from '../actions/index';
+import {getWeather} from '../actions';
 import './App.css';
 
 class App extends Component {

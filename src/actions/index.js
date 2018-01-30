@@ -6,11 +6,20 @@ export const get_weather = weather => ({
     weather
 });
 
+export const CITY_CONDITION = 'CITY_CONDITION';
+export const cityCondition = data => ({
+    type:CITY_CONDITION,
+    data
+})
+
 export const getCityDetails = (city,state) => dispatch => {
-    city.join
+    // city.join
     request
         .get(`http://api.wunderground.com/api/379fd1456a7b17fc/conditions/q/${state}/${city}.json`)
-        .then(data => console.log(data))
+        .then(res => {
+            console.log(res.body.current_observation)
+            dispatch(cityCondition(res.body.current_observation))
+        })
     }
 
 export const getWeather = () => dispatch => {

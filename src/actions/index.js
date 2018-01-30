@@ -6,12 +6,27 @@ export const get_weather = weather => ({
     weather
 });
 
+export const getCityDetails = (city,state) => dispatch => {
+    city.join
+    request
+        .get(`http://api.wunderground.com/api/379fd1456a7b17fc/conditions/q/${state}/${city}.json`)
+        .then(data => console.log(data))
+    }
+
 export const getWeather = () => dispatch => {
     request 
         .get('http://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/autoip.json')
         .then(res => {
             dispatch(get_weather(res.body.location))
+            const {city,state} = res.body.location;
+            dispatch(getCityDetails(city,state))
         }).catch(err => {
             console.error(err)
         })
 }  
+
+export const UPDATE_TIME = 'UPDATE_TIME';
+export const updateTime = time => ({
+    type:UPDATE_TIME,
+    time
+})

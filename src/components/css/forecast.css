@@ -4,9 +4,21 @@
 }
 
 .forecast {
-    max-width:200px;
-    margin:auto;
-    margin-left:10px;
-    margin-right:10px;
-    display:inline-block;
+    min-width: 250px;
+    margin: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+    display: inline-block;
+    /* border: .5px solid grey; */
+    padding: 10px;
+}
+
+li {
+    margin: 10px 0;
+}
+
+li:nth-Child(1) {
+    background:gold;
+    border-radius: 5px 5px 0 0;
 }

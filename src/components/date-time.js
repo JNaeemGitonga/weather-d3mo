@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {updateTime} from '../actions';
+import moment from 'moment';
 
 class DateTime extends Component {
+
+    state = {
+        date:''
+    }
 
     componentWillMount() {
         this.startTime()
@@ -15,7 +20,7 @@ class DateTime extends Component {
         let s = today.getSeconds();
         m = this.checkTime(m);
         s = this.checkTime(s);
-        this.setState({time:`${h}:${m}:${s}`})
+        this.setState({date:moment(today).format('MMM Do YY')})
         this.props.dispatch(updateTime(`${h}:${m}:${s}`));
         setTimeout(this.startTime, 500);
     }
@@ -31,11 +36,11 @@ class DateTime extends Component {
         
         return (
             <div className='date-time'>
-                <p> {time}</p>
-                <p> {date}</p>
+                <p className='date'> {date}</p>
+                <p className='time'> {time}</p>
             </div>
         )
-    }
+    } 
 }
 const mapStateToProps = state => {
     return {

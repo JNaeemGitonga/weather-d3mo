@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import './css/forecast.css';
 
 class Forecast extends Component {
 
@@ -8,8 +9,11 @@ class Forecast extends Component {
         let daily;
         if (forecast) {
             daily = forecast.map(day => {
+
+                let name = `forecast-${day.period}`;
+
                 return (
-                    <div key={day.period}>
+                    <div key={day.period} className={name} >
                             <ul>
                                 <li><img src={day.icon_url} alt={day.icon}/></li>
                                 <li>{day.date.weekday_short}</li>
@@ -27,10 +31,9 @@ class Forecast extends Component {
         }
 
         return ( 
-                <div>
+                <div className='forecast'>
                    
                     {daily}
-                       
                 
                 </div>
         )

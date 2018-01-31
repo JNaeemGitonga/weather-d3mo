@@ -5,6 +5,7 @@ import DateTime from './date-time';
 import Error from './error';
 import Forecast from './forecast';
 import Nav from './nav';
+import './css/App.css';
 
 class App extends Component {
 	componentWillMount() {

@@ -11,10 +11,9 @@ class Marquee extends Component {
             <div className="marquee">
             <div>
               <span>{marquee}</span>
-              <span>{marquee}</span>
             </div>
           </div> 
-        )
+        ) 
     }
 }
 

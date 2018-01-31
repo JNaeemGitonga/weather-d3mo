@@ -87,6 +87,11 @@ export const updateTime = time => ({
 export const testData = data => dispatch => {
 
 }
+export const  toTitleCase = str => {
+    return str.replace(/\w\S*/g, txt => {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
 
 export const getForecast = (city,state) => dispatch => {
     request
@@ -96,7 +101,10 @@ export const getForecast = (city,state) => dispatch => {
                 dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
             }
             else {
-                dispatch(updateForecast(res.body.forecast.simpleforecast.forecastday.splice(1,5)))
+                let forecast = res.body.forecast.simpleforecast.forecastday
+                let today = forecast[0];
+                dispatch(updateForecast(forecast.splice(0,5)))
+                dispatch(updateMarquee(`Today in ${toTitleCase(city)} it is "${today.conditions}" with a high of ${today.high.fahrenheit}°F and a low of ${today.low.fahrenheit}°F!`))
             }
         })
         .catch(err => {

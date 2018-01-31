@@ -5,7 +5,8 @@ export const initialState = {
     city:null,
     error:'',
     forecast:null,
-    marquee:''
+    marquee:'',
+    cityName:''
 } 
 
 const reducer = (state = initialState, action) => {

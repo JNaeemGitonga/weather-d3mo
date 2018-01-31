@@ -12,18 +12,43 @@ export const cityCondition = data => ({
     data
 })
 
+export const UPDATE_ERROR = 'UPDATE_ERROR';
+export const updateError = error => ({
+    type:UPDATE_ERROR,
+    error
+})
+
 export const getCityDetails = (city,state) => dispatch => {
-    // city.join
     request
         .get(`http://api.wunderground.com/api/379fd1456a7b17fc/conditions/q/${state}/${city}.json`)
         .then(res => {
+            console.log(res)
+            if(res.body.response.error){
+               dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
+            }
             console.log(res.body.current_observation)
             dispatch(cityCondition(res.body.current_observation))
         })
         .catch(err => {
             console.error(err)
+            // MAKE ACTION TO DISPLAY NOT FOUND MESSAGE
+            //UPDATE REDUCER TO STORE THAT MESSAGE
         })
 }
+
+export const getCityDetailsZip = zip => dispatch => {
+    request
+        .get(`http://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/${zip}.json`)
+        .then(res => {
+            dispatch(getCityDetails(res.body.location.city,res.body.location.state))
+        })
+        .catch(err => {
+            console.error(err)
+            // MAKE ACTION TO DISPLAY NOT FOUND MESSAGE
+            //UPDATE REDUCER TO STORE THAT MESSAGE
+        })
+}
+
 
 export const getWeather = () => dispatch => {
     request 
@@ -43,9 +68,35 @@ export const updateTime = time => ({
     time
 })
 
+export const testData = data => dispatch => {
+
+}
 
 export const typeOfSearch = data => dispatch => {
-    if(typeof data === 'number') {
+
+    if(/^\d+$/.test(data)) {
+        dispatch(getCityDetailsZip(data))
+    }
+    else if (/^[A-Za-z,\W]+$/.test(data)) {
+
+        let str = data.split(',')
+        let str2= data.split(' ')
+
+        if(str.length ===2){
+            dispatch(getCityDetails(str[0],str[1]))
+        }
+        else if(str2.length === 2){
+            dispatch(getCityDetails(str2[0],str2[1]))
+        }
+        else {
+           dispatch(updateError('Please enter city with abbreviation! e.g., Clinton, NC'))
+            ///CALL ON ERROR HANDLER MESSAGE: PLEASE ENTER CITY WITH ABBREVIATED STATE eg. Seattle, WA
+        }
+    }
+    else {
+        console.log('working else block', data)
+        dispatch(updateError('Please enter city with abbreviation! e.g., Clinton, NC'))
+        ///CALL ON ERROR HANDLER MESSAGE: PLEASE ENTER CITY WITH ABBREVIATED STATE eg. Seattle, WA
 
     }
 }

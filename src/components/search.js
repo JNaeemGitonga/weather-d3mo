@@ -1,33 +1,40 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {typeOfSearch} from '../actions';
 import './css/input.css';
 
 class Search extends Component {
-//folder 9
+
     render() {
 
+        const {dispatch} = this.props;
 
         return(
+
             <form className='search-bar' onSubmit={e => {
                 e.preventDefault()
-                console.log(this.textInput.value)
+                dispatch(typeOfSearch(this.textInput.value))
+                console.log(typeof this.textInput.value)
                 this.textInput.value = ''
             }}>
+
                 <div className='input-field'>
                     <input type='text' 
-                            className='input-box'
-                            placeholder='enter city, state or zip code'
-                            ref={input => this.textInput = input}
+                        className='input-box'
+                        placeholder='enter city, state or zip code'
+                        ref={input => this.textInput = input}
                     />
                 </div>
+
                 <div className='search-btn'>
                     <i className="fa fa-search link" type='submit' aria-hidden="true" onClick={
                         () => {
-                           console.log('working', this.textInput.value)
-                            this.textInput.value = '' 
+                            dispatch(typeOfSearch(this.textInput.value))
+                            this.textInput.value = '' ;
                         }
                     }></i>
                 </div>
+                
             </form>
         )     
     }

@@ -4,7 +4,8 @@ export const initialState = {
     time:'',
     city:null,
     error:'',
-    forecast:null
+    forecast:null,
+    marquee:''
 } 
 
 const reducer = (state = initialState, action) => {
@@ -29,6 +30,10 @@ const reducer = (state = initialState, action) => {
         case 'UPDATE_FORECAST':
             return Object.assign({}, state, {
                 forecast:action.forecast
+            })
+        case 'UPDATE_MARQUEE':
+            return Object.assign({}, state, {
+                marquee:action.marquee
             })
         default:
             return state

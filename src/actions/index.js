@@ -24,6 +24,12 @@ export const updateForecast = forecast => ({
     forecast
 })
 
+export const UPDATE_MARQUEE = 'UPDATE_MARQUEE';
+export const updateMarquee = marquee => ({
+    type:UPDATE_MARQUEE,
+    marquee
+}) 
+
 export const getCityDetails = (city,state) => dispatch => {
     console.log(city,state)
     request
@@ -91,7 +97,6 @@ export const getForecast = (city,state) => dispatch => {
             }
             else {
                 dispatch(updateForecast(res.body.forecast.simpleforecast.forecastday.splice(1,5)))
-                console.log('working', res.body.forecast.simpleforecast.forecastday.splice(1,6))
             }
         })
         .catch(err => {

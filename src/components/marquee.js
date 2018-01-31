@@ -5,15 +5,22 @@ import './css/marquee.css'
 class Marquee extends Component {
 
     render() {
+        const {marquee} = this.props;
+
         return (
             <div className="marquee">
             <div>
-              <span>You spin me right round, baby. Like a record, baby.</span>
-              <span>You spin me right round, baby. Like a record, baby.</span>
+              <span>{marquee}</span>
+              <span>{marquee}</span>
             </div>
           </div> 
         )
     }
 }
 
-export default connect()(Marquee)
+const mapStateToProps = state => {
+    return {
+        marquee:state.marquee
+    }
+}
+export default connect(mapStateToProps)(Marquee)

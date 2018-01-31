@@ -18,15 +18,15 @@ class Search extends Component {
                 this.textInput.value = ''
             }}>
 
-                <div className='input-field'>
+                <div className='input-field search'>
                     <input type='text' 
-                        className='input-box'
-                        placeholder='enter city, state or zip code'
+                        className='input-box '
+                        placeholder='enter city, state or zip code e.g. Clinton, NC '
                         ref={input => this.textInput = input}
                     />
                 </div>
 
-                <div className='search-btn'>
+                <div className='search-btn search'>
                     <i className="fa fa-search link" type='submit' aria-hidden="true" onClick={
                         () => {
                             dispatch(typeOfSearch(this.textInput.value))

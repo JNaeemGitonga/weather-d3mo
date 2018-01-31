@@ -90,8 +90,8 @@ export const getForecast = (city,state) => dispatch => {
                 dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
             }
             else {
-                dispatch(updateForecast(res.body.forecast.simpleforecast.forecastday))
-                console.log('working', res.body.forecast.simpleforecast.forecastday)
+                dispatch(updateForecast(res.body.forecast.simpleforecast.forecastday.splice(1,5)))
+                console.log('working', res.body.forecast.simpleforecast.forecastday.splice(1,6))
             }
         })
         .catch(err => {

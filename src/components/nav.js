@@ -13,7 +13,6 @@ class Nav extends Component {
 
         if(ipweather) {
             place = ipweather.city
-            console.log(ipweather)            
         }
 
         return (
@@ -24,7 +23,7 @@ class Nav extends Component {
                 <Search />
                 <Marquee />
             </div>
-            
+
         )
     }
 }

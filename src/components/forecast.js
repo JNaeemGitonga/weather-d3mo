@@ -10,10 +10,8 @@ class Forecast extends Component {
         if (forecast) {
             daily = forecast.map(day => {
 
-                let name = `forecast-${day.period}`;
-
                 return (
-                    <div key={day.period} className={name} >
+                    <div key={day.period} className='forecast' >
                             <ul>
                                 <li><img src={day.icon_url} alt={day.icon}/></li>
                                 <li>{day.date.weekday_short}</li>
@@ -31,7 +29,7 @@ class Forecast extends Component {
         }
 
         return ( 
-                <div className='forecast'>
+                <div className='forecast-container'>
                    
                     {daily}
                 

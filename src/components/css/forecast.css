@@ -1,4 +1,12 @@
-.forecast {
+.forecast-container {
     max-width: 500px;
     margin: auto;
+}
+
+.forecast {
+    max-width:200px;
+    margin:auto;
+    margin-left:10px;
+    margin-right:10px;
+    display:inline-block;
 }

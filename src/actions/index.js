@@ -35,7 +35,7 @@ export const getCityDetails = (city,state) => dispatch => {
     request
         .get(`http://api.wunderground.com/api/379fd1456a7b17fc/conditions/q/${state}/${city}.json`)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             if(res.body.response.error){
                return dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
             }
@@ -87,24 +87,44 @@ export const updateTime = time => ({
 export const testData = data => dispatch => {
 
 }
-export const  toTitleCase = str => {
+const  _toTitleCase = str => {
     return str.replace(/\w\S*/g, txt => {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 }
 
 export const getForecast = (city,state) => dispatch => {
+
+    /*
+        here we have an issue, if you type in Atlanta, asfdasdfasd 
+        you will get back an array of cities named atlanta but it will also 
+        also 
+    
+    
+    */
+    dispatch(updateForecast(''))
+    dispatch(updateError(''))
     request
         .get(`http://api.wunderground.com/api/379fd1456a7b17fc/forecast10day/q/${state}/${city}.json`)
         .then(res => {
+            console.log(res)
             if(res.body.response.error){
                 dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
             }
             else {
-                let forecast = res.body.forecast.simpleforecast.forecastday
-                let today = forecast[0];
-                dispatch(updateForecast(forecast.splice(0,5)))
-                dispatch(updateMarquee(`Today in ${toTitleCase(city)} it is "${today.conditions}" with a high of ${today.high.fahrenheit}°F and a low of ${today.low.fahrenheit}°F!`))
+                console.log(res.body.forecast)
+                if (!res.body.forecast.hasOwnProperty('simpleforecast')){
+                    dispatch(updateError('There may have been multiple cities matching your search. Please try again!'))
+                }
+                else {
+                    let forecast = res.body.forecast.simpleforecast.forecastday
+                    let txt = res.body.forecast.txt_forecast.forecastday[0].fcttext
+                    let today = forecast[0];
+                    dispatch(updateForecast(forecast.splice(0,5)))
+                    // dispatch(updateMarquee(`Today in ${toTitleCase(city)} it is "${today.conditions}" with a high of ${today.high.fahrenheit}°F and a low of ${today.low.fahrenheit}°F!`))
+                    dispatch(updateMarquee(`In ${_toTitleCase(city)}: ${txt}`))
+                }
+                
             }
         })
         .catch(err => {
@@ -132,7 +152,6 @@ export const typeOfSearch = data => dispatch => {
         }
         else {
            dispatch(updateError('Please enter city with abbreviation! e.g., Clinton, NC'))
-            ///CALL ON ERROR HANDLER MESSAGE: PLEASE ENTER CITY WITH ABBREVIATED STATE eg. Seattle, WA
         }
     }
     else {

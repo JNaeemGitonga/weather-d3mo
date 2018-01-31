@@ -94,11 +94,9 @@ const  _toTitleCase = str => {
 }
 
 export const getForecast = (city,state) => dispatch => {
-
+    console.log('from getForeccast',city, state)
     /*
-        here we have an issue, if you type in Atlanta, asfdasdfasd 
-        you will get back an array of cities named atlanta but it will also 
-        also 
+       not running on page refresh
     
     
     */
@@ -112,17 +110,20 @@ export const getForecast = (city,state) => dispatch => {
                 dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
             }
             else {
-                console.log(res.body.forecast)
-                if (!res.body.forecast.hasOwnProperty('simpleforecast')){
-                    dispatch(updateError('There may have been multiple cities matching your search. Please try again!'))
+                console.log(res.body )
+                if (Object.keys(res.body).length === 1){
+                    dispatch(updateError('Seems like there are multiple cities matching your search. Try refining it with a City, State name and abbreviation!'))
                 }
-                else {
+                else if (res.body.hasOwnProperty('response') && res.body.hasOwnProperty('forecast')) {
                     let forecast = res.body.forecast.simpleforecast.forecastday
                     let txt = res.body.forecast.txt_forecast.forecastday[0].fcttext
                     let today = forecast[0];
                     dispatch(updateForecast(forecast.splice(0,5)))
                     // dispatch(updateMarquee(`Today in ${toTitleCase(city)} it is "${today.conditions}" with a high of ${today.high.fahrenheit}°F and a low of ${today.low.fahrenheit}°F!`))
                     dispatch(updateMarquee(`In ${_toTitleCase(city)}: ${txt}`))
+                }
+                else {
+                    dispatch(updateError('Opps! Something when wrong. Please try your search again!'))
                 }
                 
             }

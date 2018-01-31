@@ -11,11 +11,12 @@ class Forecast extends Component {
                 return (
                     <div key={day.period}>
                             <ul>
-                                <li><img src={day.icon_url}/></li>
+                                <li><img src={day.icon_url} alt={day.icon}/></li>
                                 <li>{day.date.weekday_short}</li>
                                 <li>{day.date.month}/{day.date.day}</li>
                                 <li>Humidity: {day.avehumidity}</li>
                                 <li>Conditions: {day.conditions}</li>
+                                <li>Hi: {day.high.fahrenheit}&#8457;/ {day.high.celsius}&#8451;</li>
                             </ul>
                         </div>
                     )

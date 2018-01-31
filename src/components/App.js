@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {getWeather} from '../actions';
 import DateTime from './date-time';
 import Error from './error';
-import Search from './search';
 import Forecast from './forecast';
+import Nav from './nav';
 
 class App extends Component {
 	componentWillMount() {
@@ -14,8 +14,8 @@ class App extends Component {
 	render() {
 		return (
 		<div className="App">
+			<Nav />
 			<DateTime />
-			<Search />
 			<Error />
 			<Forecast />
 		</div>

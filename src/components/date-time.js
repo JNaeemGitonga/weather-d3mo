@@ -26,13 +26,13 @@ class DateTime extends Component {
     }
 
     checkTime = i => {
-        if (i<10) {i = '0' + i}
+        if (i < 10) {i = '0' + i}
         return i
     }
 
     render() {
         const {date} = this.state;
-        const {ipweather, time} = this.props;
+        const {time} = this.props;
         
         return (
             <div className='date-time'>

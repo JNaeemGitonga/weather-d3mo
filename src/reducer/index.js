@@ -3,9 +3,9 @@ export const initialState = {
     ipweather:null,
     time:'',
     city:null,
-    error:''
+    error:'',
+    forecast:null
 } 
-
 
 const reducer = (state = initialState, action) => {
     switch(action.type){
@@ -23,7 +23,12 @@ const reducer = (state = initialState, action) => {
             })
         case 'UPDATE_ERROR':
             return Object.assign({}, state, {
-                error:action.error
+                error:action.error,
+                forecast:null
+            })
+        case 'UPDATE_FORECAST':
+            return Object.assign({}, state, {
+                forecast:action.forecast
             })
         default:
             return state

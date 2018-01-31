@@ -4,6 +4,7 @@ import {getWeather} from '../actions';
 import DateTime from './date-time';
 import Error from './error';
 import Search from './search';
+import Forecast from './forecast';
 
 class App extends Component {
 	componentWillMount() {
@@ -17,6 +18,7 @@ class App extends Component {
 			<DateTime />
 			<Search />
 			<Error />
+			<Forecast />
 		</div>
 		);
 	}

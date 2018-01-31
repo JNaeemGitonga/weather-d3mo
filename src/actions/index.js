@@ -18,16 +18,26 @@ export const updateError = error => ({
     error
 })
 
+export const UPDATE_FORECAST = 'UPDATE_FORECAST';
+export const updateForecast = forecast => ({
+    type:UPDATE_FORECAST,
+    forecast
+})
+
 export const getCityDetails = (city,state) => dispatch => {
+    console.log(city,state)
     request
         .get(`http://api.wunderground.com/api/379fd1456a7b17fc/conditions/q/${state}/${city}.json`)
         .then(res => {
             console.log(res)
             if(res.body.response.error){
-               dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
+               return dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
             }
-            console.log(res.body.current_observation)
-            dispatch(cityCondition(res.body.current_observation))
+            else {
+                dispatch(cityCondition(res.body.current_observation))
+                dispatch(getForecast(city,state))
+            }
+           
         })
         .catch(err => {
             console.error(err)
@@ -72,6 +82,23 @@ export const testData = data => dispatch => {
 
 }
 
+export const getForecast = (city,state) => dispatch => {
+    request
+        .get(`http://api.wunderground.com/api/379fd1456a7b17fc/forecast10day/q/${state}/${city}.json`)
+        .then(res => {
+            if(res.body.response.error){
+                dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
+            }
+            else {
+                dispatch(updateForecast(res.body.forecast.simpleforecast.forecastday))
+                console.log('working', res.body.forecast.simpleforecast.forecastday)
+            }
+        })
+        .catch(err => {
+            console.error(err)
+        })
+}
+
 export const typeOfSearch = data => dispatch => {
 
     if(/^\d+$/.test(data)) {
@@ -84,9 +111,11 @@ export const typeOfSearch = data => dispatch => {
 
         if(str.length ===2){
             dispatch(getCityDetails(str[0],str[1]))
+            
         }
         else if(str2.length === 2){
             dispatch(getCityDetails(str2[0],str2[1]))
+            
         }
         else {
            dispatch(updateError('Please enter city with abbreviation! e.g., Clinton, NC'))
@@ -100,3 +129,4 @@ export const typeOfSearch = data => dispatch => {
 
     }
 }
+

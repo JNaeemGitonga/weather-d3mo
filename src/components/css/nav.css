@@ -12,7 +12,8 @@
 
 .date-time {
     float:right;
-    margin-right:10px
+    margin-right:10px;
+    margin-bottom: 25px;
 
 }
 .location-statement {

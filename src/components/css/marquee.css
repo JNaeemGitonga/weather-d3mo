@@ -1,7 +1,7 @@
 /* Make it a marquee */
 .marquee {
   width: 450px;
-  margin: 0 auto;
+  margin: 25px auto;
   overflow: hidden;
   white-space: nowrap;
   box-sizing: border-box;

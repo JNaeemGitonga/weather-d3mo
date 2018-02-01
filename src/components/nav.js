@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Search from './search';
 import Marquee from './marquee';
 import DateTime from './date-time';
+import './css/nav.css';
 
 class Nav extends Component {
 
@@ -19,7 +20,7 @@ class Nav extends Component {
         return (
 
             <div className='nav'>
-                <h1>Weather!</h1>
+                <h1 className='app-name'>Weather!</h1>
                 <DateTime />
                 <p>Looks like you're in... {place}</p>
                 <Search />

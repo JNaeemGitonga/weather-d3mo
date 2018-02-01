@@ -1,15 +1,26 @@
 
+html, body {
+    width: 100vw;
+    height: 100vh;
+}
+
 html {
     background:#009fff;
     overflow-x: hidden;
     padding:15px;
+}
+
+#root {
+    text-align:center;
+
+
 }
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.7em;
     letter-spacing: 0.01rem;
     color:white;
-    height:100%;
+    display:block;
 }
 
 footer {

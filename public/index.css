@@ -1,6 +1,7 @@
 
 html, body {
     height: 100vh;
+    width:auto;
 }
 
 html {
@@ -20,6 +21,8 @@ body {
     letter-spacing: 0.01rem;
     color:white;
     display:block;
+    margin: 0;
+    padding: 0;
 }
 
 footer {
@@ -41,3 +44,11 @@ footer>a {
 footer>a:hover{
     cursor:pointer;
 }
+
+.App {
+    text-align:center;
+    width:auto;
+    overflow: hidden;
+    max-width: auto;
+    padding:0 0;
+  }

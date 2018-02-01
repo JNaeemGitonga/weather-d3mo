@@ -22,7 +22,7 @@ class Nav extends Component {
             <div className='nav'>
                 <h1 className='app-name'>Weather!</h1>
                 <DateTime />
-                <p>Looks like you're in... {place}</p>
+                <p className='location-statement'>Looks like you're in... {place}</p>
                 <Search />
                 <Marquee />
             </div>

@@ -4,6 +4,10 @@
 
 .date-time {
     float:right;
+
+}
+.location-statement {
+    margin: 20px 0;
 }
 
 @media(max-width:690px) {

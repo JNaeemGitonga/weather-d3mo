@@ -2,6 +2,10 @@
     cursor:pointer;
 }
 
+.link {
+    color:black;
+}
+
 .input-box {
     max-width: 40%;
     min-width: 260px;
@@ -33,6 +37,8 @@ input:focus {
     }
     .search-btn {
         margin-top:0;
+        
+    margin-bottom: 10px;
     }
 
     .input-box {

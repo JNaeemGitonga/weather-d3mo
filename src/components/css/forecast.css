@@ -1,14 +1,22 @@
 .forecast-container {
     margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 0.5rem 15px;
+    margin-top:50px
 }
 
 .forecast {
-    min-width: 250px;
+     width: 200px;
+    height: 350px;
     margin: auto;
+    margin-bottom: 25px;
+   /* margin: auto;
     margin-left: 10px;
     margin-right: 10px;
-    margin-top: 15px;
-    display: inline-block;
+    
+    display: inline-block; */
     /* border: .5px solid grey; */
     border-radius: 5px 5px 0 0;
 }
@@ -22,3 +30,9 @@ li:nth-Child(1) {
     border-radius: 5px 5px 0 0;
     margin-top:0;
 }
+
+/* @media(max-width: 520px){
+    .forecast {
+        width:250px !important
+    }
+} */

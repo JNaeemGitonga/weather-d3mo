@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './css/forecast.css';
+import './css/float-grid.css';
 
 class Forecast extends Component {
 
@@ -29,7 +30,7 @@ class Forecast extends Component {
         }
 
         return ( 
-                <div className='forecast-container'>
+                <div className='forecast-container '>
                    
                     {daily}
                 

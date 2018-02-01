@@ -17,3 +17,23 @@ this.setState({
     [name]:value
 }) 
 }
+
+
+
+
+startTime = () => {
+    let today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = this.checkTime(m);
+    s = this.checkTime(s);
+    this.setState({date:moment(today).format('MMM Do YY')})
+    this.props.dispatch(updateTime(`${h}:${m}:${s}`));
+    setTimeout(this.startTime, 500);
+}
+
+checkTime = i => {
+    if (i < 10) {i = '0' + i}
+    return i
+}

@@ -36,6 +36,10 @@ const reducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 marquee:action.marquee
             })
+        case 'UPDATE_CITYNAME':
+            return Object.assign({}, state,{
+                cityName:action.city
+            })    
         default:
             return state
     }

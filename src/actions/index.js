@@ -30,6 +30,12 @@ export const updateMarquee = marquee => ({
     marquee
 }) 
 
+export const UPDATE_CITYNAME = 'UPDATE_CITYNAME';
+export const updateCityName = city => ({
+    type:UPDATE_CITYNAME,
+    city
+})
+
 export const getCityDetails = (city,state) => dispatch => {
     console.log(city,state)
     request
@@ -65,9 +71,6 @@ export const getCityDetailsZip = zip => dispatch => {
 
 export const getWeather = () => dispatch => {
 
-    /*
-        // UNABLE TO GET DEVICE LOCATION ON MY ANDROID BUT WORKS ON MY IPHONE?
-    */
     request 
         .get('http://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/autoip.json')
         .then(res => {
@@ -95,12 +98,7 @@ const  _toTitleCase = str => {
 }
 
 export const getForecast = (city,state) => dispatch => {
-    console.log('from getForeccast',city, state)
-    /*
-       not running on page refresh
     
-    
-    */
     dispatch(updateForecast(''))
     dispatch(updateError(''))
     request
@@ -120,7 +118,7 @@ export const getForecast = (city,state) => dispatch => {
                     let txt = res.body.forecast.txt_forecast.forecastday[0].fcttext
                     let today = forecast[0];
                     dispatch(updateForecast(forecast.splice(0,5)))
-                    // dispatch(updateMarquee(`Today in ${toTitleCase(city)} it is "${today.conditions}" with a high of ${today.high.fahrenheit}°F and a low of ${today.low.fahrenheit}°F!`))
+                    dispatch(updateCityName(_toTitleCase(city)))
                     dispatch(updateMarquee(`In ${_toTitleCase(city)}: ${txt}`))
                 }
                 else {

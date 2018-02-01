@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getWeather} from '../actions';
-
+import City from './city';
 import Error from './error';
 import Forecast from './forecast';
 import Nav from './nav';
@@ -18,6 +18,7 @@ class App extends Component {
 			<Nav />
 			
 			<Error />
+			<City />
 			<Forecast />
 		</div>
 		);

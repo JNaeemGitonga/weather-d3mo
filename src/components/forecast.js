@@ -9,7 +9,7 @@ class Forecast extends Component {
         const {forecast} = this.props;
 
         let daily;
-
+        
         if (forecast) {
 
             daily = forecast.map(day => {
@@ -42,7 +42,7 @@ class Forecast extends Component {
 
 const mapStateToProps = state => {
     return {
-        forecast:state.forecast
+        forecast:state.forecast,
     }
 }
 export default connect(mapStateToProps)(Forecast)

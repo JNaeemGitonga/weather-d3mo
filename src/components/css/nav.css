@@ -1,0 +1,18 @@
+.app-name {
+    float:left;
+}
+
+.date-time {
+    float:right;
+}
+
+@media(max-width:690px) {
+    
+   .date-time {
+       float:unset;
+   }
+   
+   .app-name {
+       float:unset;
+   }
+}

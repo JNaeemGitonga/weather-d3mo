@@ -1,16 +1,25 @@
+.nav {
+    padding-top: 15px;
+}
 .app-name {
     float:left;
+    display:inline-block;
+}
+
+.el {
+    margin:0 10px
 }
 
 .date-time {
     float:right;
+    margin-right:10px
 
 }
 .location-statement {
     margin: 20px 0;
 }
 
-@media(max-width:690px) {
+@media(max-width:790px) {
     
    .date-time {
        float:unset;

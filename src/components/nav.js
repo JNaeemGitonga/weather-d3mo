@@ -20,9 +20,12 @@ class Nav extends Component {
         return (
 
             <div className='nav'>
-                <h1 className='app-name'>Weather!</h1>
+                <div className='app-name'>
+                    <h1 className='el'>Weather!</h1>
+                    <p className='location-statement el'>Looks like you're in... {place}</p>
+                </div>
                 <DateTime />
-                <p className='location-statement'>Looks like you're in... {place}</p>
+                
                 <Search />
                 <Marquee />
             </div>

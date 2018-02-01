@@ -1,5 +1,4 @@
 .forecast-container {
-    max-width: 500px;
     margin: auto;
 }
 
@@ -11,7 +10,7 @@
     margin-top: 15px;
     display: inline-block;
     /* border: .5px solid grey; */
-    padding: 10px;
+    border-radius: 5px 5px 0 0;
 }
 
 li {
@@ -21,4 +20,5 @@ li {
 li:nth-Child(1) {
     background:gold;
     border-radius: 5px 5px 0 0;
+    margin-top:0;
 }

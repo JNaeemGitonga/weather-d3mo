@@ -9,7 +9,7 @@ Please feel free to use it however you like.
 
 
 ## Live App
-[Weather!](weather-d3mo.herokuapp.com)
+[Weather!](http://weather-d3mo.herokuapp.com)
 
 
 ### Planning/WireFrame

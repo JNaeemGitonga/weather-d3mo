@@ -4,8 +4,10 @@ html {
     width:100vw;
     background:#009fff;
     overflow-x: hidden;
+    padding:15px;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
+
 }

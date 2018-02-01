@@ -67,6 +67,10 @@ export const getCityDetailsZip = zip => dispatch => {
 
 
 export const getWeather = () => dispatch => {
+
+    /*
+        UNABLE TO GET DEVICE LOCATION ON MY ANDROID BUT WORKS ON MY IPHONE
+    */
     request 
         .get('http://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/autoip.json')
         .then(res => {

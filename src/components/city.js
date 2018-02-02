@@ -6,7 +6,7 @@ class City extends Component {
 	
 	render() {
         
-        const {cityName} = this.props;
+        const {cityName, currentTemp} = this.props;
 
         let city;
 
@@ -16,7 +16,7 @@ class City extends Component {
 
 		return (
 		<div className="city-box">
-			 <h2 className='current-city'  style={{fontSize:'x-large',marginTop:'40px'}}>{city}</h2>
+			 <h2 className='current-city'  style={{fontSize:'x-large',marginTop:'40px'}}>{city} {currentTemp}&#8457;</h2>
 		</div>
 		);
 	}
@@ -24,7 +24,8 @@ class City extends Component {
 
 const mapStateToProps = state => {
     return {
-        cityName:state.cityName
+        cityName:state.cityName,
+        currentTemp:state.currentTemp
     }
 }
 export default connect(mapStateToProps)(City)

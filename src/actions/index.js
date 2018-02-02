@@ -36,6 +36,12 @@ export const updateCityName = city => ({
     city
 })
 
+export const UPDATE_CURRENTTEMP = 'UPDATE_CURRENTTEMP';
+export const updateCurrentTemp = temp => ({
+    type:UPDATE_CURRENTTEMP,
+    temp
+})
+
 export const getCityDetails = (city,state) => dispatch => {
     request
         .get(`https://api.wunderground.com/api/379fd1456a7b17fc/conditions/q/${state}/${city}.json`)
@@ -87,9 +93,6 @@ export const updateTime = time => ({
     time
 })
 
-export const testData = data => dispatch => {
-
-}
 const  _toTitleCase = str => {
     return str.replace(/\w\S*/g, txt => {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();

@@ -8,8 +8,15 @@ Please feel free to use it however you like.
 --PROB8 
 
 
+## Getting Started
+1. Clone the link to your local machine
+2.  `$ npm install`
+3.  `$ npm start`
+4.  `localhost:3000/` should open in your browser
+
+
 ## Live App
-weather-d3mo.herokuapp.com
+[Click Here!](https://weather-d3mo.herokuapp.com)
 
 
 ### Planning/WireFrame

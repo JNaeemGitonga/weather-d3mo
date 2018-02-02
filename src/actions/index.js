@@ -38,7 +38,7 @@ export const updateCityName = city => ({
 
 export const getCityDetails = (city,state) => dispatch => {
     request
-        .get(`http://api.wunderground.com/api/379fd1456a7b17fc/conditions/q/${state}/${city}.json`)
+        .get(`https://api.wunderground.com/api/379fd1456a7b17fc/conditions/q/${state}/${city}.json`)
         .then(res => {
             if(res.body.response.error){
                return dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
@@ -57,7 +57,7 @@ export const getCityDetails = (city,state) => dispatch => {
 
 export const getCityDetailsZip = zip => dispatch => {
     request
-        .get(`http://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/${zip}.json`)
+        .get(`https://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/${zip}.json`)
         .then(res => {
             dispatch(getCityDetails(res.body.location.city,res.body.location.state))
         })
@@ -71,7 +71,7 @@ export const getCityDetailsZip = zip => dispatch => {
 export const getWeather = () => dispatch => {
 
     request 
-        .get('http://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/autoip.json')
+        .get('https://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/autoip.json')
         .then(res => {
             dispatch(get_weather(res.body.location))
             const {city,state} = res.body.location;
@@ -101,7 +101,7 @@ export const getForecast = (city,state) => dispatch => {
     dispatch(updateForecast(''))
     dispatch(updateError(''))
     request
-        .get(`http://api.wunderground.com/api/379fd1456a7b17fc/forecast10day/q/${state}/${city}.json`)
+        .get(`https://api.wunderground.com/api/379fd1456a7b17fc/forecast10day/q/${state}/${city}.json`)
         .then(res => {
             if(res.body.response.error){
                 dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))

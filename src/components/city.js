@@ -16,7 +16,7 @@ class City extends Component {
 
 		return (
 		<div className="city-box">
-			 <h2 className='current-city'  style={{fontSize:'x-large'}}>{city}</h2>
+			 <h2 className='current-city'  style={{fontSize:'x-large',marginTop:'40px'}}>{city}</h2>
 		</div>
 		);
 	}

@@ -104,12 +104,10 @@ export const getForecast = (city,state) => dispatch => {
     request
         .get(`http://api.wunderground.com/api/379fd1456a7b17fc/forecast10day/q/${state}/${city}.json`)
         .then(res => {
-            console.log(res)
             if(res.body.response.error){
                 dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
             }
             else {
-                console.log(res.body )
                 if (Object.keys(res.body).length === 1){
                     dispatch(updateError('Seems like there are multiple cities matching your search. Try refining it with a City, State name and abbreviation!'))
                 }

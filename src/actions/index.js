@@ -37,7 +37,6 @@ export const updateCityName = city => ({
 })
 
 export const getCityDetails = (city,state) => dispatch => {
-    console.log(city,state)
     request
         .get(`http://api.wunderground.com/api/379fd1456a7b17fc/conditions/q/${state}/${city}.json`)
         .then(res => {

@@ -114,7 +114,6 @@ export const getForecast = (city,state) => dispatch => {
                 else if (res.body.hasOwnProperty('response') && res.body.hasOwnProperty('forecast')) {
                     let forecast = res.body.forecast.simpleforecast.forecastday
                     let txt = res.body.forecast.txt_forecast.forecastday[0].fcttext
-                    let today = forecast[0];
                     dispatch(updateForecast(forecast.splice(0,5)))
                     dispatch(updateCityName(_toTitleCase(city)))
                     dispatch(updateMarquee(`In ${_toTitleCase(city)}: ${txt}`))

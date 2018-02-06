@@ -25,7 +25,6 @@ class Nav extends Component {
                     <p className='location-statement el'>Looks like you're in... {place}</p>
                 </div>
                 <DateTime />
-                
                 <Search />
                 <Marquee />
             </div>

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {typeOfSearch} from '../actions';
 import './css/input.css';
 
@@ -40,4 +39,4 @@ class Search extends Component {
     }
 }
 
-export default connect()(Search)
+export default Search

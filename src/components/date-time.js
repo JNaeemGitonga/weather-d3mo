@@ -37,8 +37,7 @@ class DateTime extends Component {
 }
 const mapStateToProps = state => {
     return {
-        ipweather:state.ipweather,
-        time:state.time,
+        time:state.time
     }
 }
 export default connect(mapStateToProps)(DateTime)

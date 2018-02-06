@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import {getWeather} from '../actions';
 import City from './city';
 import Error from './error';
@@ -25,4 +24,4 @@ class App extends Component {
 	}
 }
 
-export default connect()(App);
+export default App;

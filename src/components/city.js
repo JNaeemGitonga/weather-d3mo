@@ -7,7 +7,7 @@ class City extends Component {
 	render() {
         
         const {cityName, currentTemp} = this.props;
-
+ 
         let city;
 
         if (cityName) {

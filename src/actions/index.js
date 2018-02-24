@@ -75,18 +75,65 @@ export const getCityDetailsZip = zip => dispatch => {
 
 
 export const getWeather = () => dispatch => {
-
-    request 
-        .get('https://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/autoip.json')
-        .then(res => {
-            dispatch(get_weather(res.body.location))
-            const {city,state} = res.body.location;
+   
+    return new Promise((resolve,reject) => {
+        let done = (location) => {
+            dispatch(get_weather(location))
+            const {city,state} = location;
             dispatch(getCityDetails(city,state))
-        }).catch(err => {
-            console.error(err)
-        })
+            resolve()
+        }
+        return request 
+            .get('https://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/autoip.json')
+            .then(res => {
+                if (res.body.location) {
+                    done(res.body.location)
+                }
+                else {
+                    if (navigator.geolocation) {
+                        dispatch(_getWeatherByLatLon(done))
+                    }
+                    else {
+                        reject()
+                    }
+                }
+            })
+            .then(res => {
+                return dispatch(updateError('Try searching using a zip code or city and state! e.g., Clinton, NC'))
+            }).catch(err => {
+                console.error(err)
+            })
+    })
 }  
 
+const _getWeatherByLatLon = cb => dispatch => {
+
+    let position = navigator.geolocation.getCurrentPosition(position => {
+        let lat = position.coords.latitude
+        let lon = position.coords.longitude
+
+        return new Promise((resolve,reject) => {
+            return request
+                .get(`https://api.wunderground.com/api/379fd1456a7b17fc/geolookup/q/${lat},${lon}.json`)
+                .then(res => {
+                    if (res.body.location) {
+                        cb(res.body.location)
+                    }
+                    else {
+                        reject(res)
+                    }
+                })
+                .then(res => {
+                    console.log(res)
+                    return dispatch(updateError('Try searching using a zip code or city and state! e.g., Clinton, NC'))
+                    
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+        }) 
+    })
+}
 export const UPDATE_TIME = 'UPDATE_TIME';
 export const updateTime = time => ({
     type:UPDATE_TIME,
@@ -103,32 +150,44 @@ export const getForecast = (city,state) => dispatch => {
     
     dispatch(updateForecast(''))
     dispatch(updateError(''))
-    request
+
+    return new Promise((resolve, reject) => {
+        return request
         .get(`https://api.wunderground.com/api/379fd1456a7b17fc/forecast10day/q/${state}/${city}.json`)
         .then(res => {
             if(res.body.response.error){
                 dispatch(updateError(`${res.body.response.error.description}. Please enter city with abbreviation! e.g., Clinton, NC`))
+                reject(res)
             }
             else {
                 if (Object.keys(res.body).length === 1){
                     dispatch(updateError('Seems like there are multiple cities matching your search. Try refining it with a City, State name and abbreviation!'))
+                    reject(res)
                 }
                 else if (res.body.hasOwnProperty('response') && res.body.hasOwnProperty('forecast')) {
+
                     let forecast = res.body.forecast.simpleforecast.forecastday
                     let txt = res.body.forecast.txt_forecast.forecastday[0].fcttext
+
                     dispatch(updateForecast(forecast.splice(0,5)))
                     dispatch(updateCityName(_toTitleCase(city)))
                     dispatch(updateMarquee(`In ${_toTitleCase(city)}: ${txt}`))
+                    resolve()
                 }
                 else {
                     dispatch(updateError('Opps! Something when wrong. Please try your search again!'))
+                    reject(res)
                 }
                 
             }
         })
+        .then(res => {
+            console.log(res)
+        })
         .catch(err => {
             console.error(err)
         })
+    }) 
 }
 
 export const typeOfSearch = data => dispatch => {
@@ -147,7 +206,6 @@ export const typeOfSearch = data => dispatch => {
         }
         else if(str2.length === 2){
             dispatch(getCityDetails(str2[0],str2[1]))
-            
         }
         else {
            dispatch(updateError('Please enter city with abbreviation! e.g., Clinton, NC'))

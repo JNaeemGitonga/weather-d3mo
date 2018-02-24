@@ -14,7 +14,6 @@ class Search extends Component {
             <form className='search-bar' onSubmit={e => {
                 e.preventDefault()
                 dispatch(typeOfSearch(this.textInput.value))
-                console.log(typeof this.textInput.value)
                 this.textInput.value = ''
             }}>
 

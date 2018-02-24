@@ -107,8 +107,8 @@ export const getWeather = () => dispatch => {
 }  
 
 const _getWeatherByLatLon = cb => dispatch => {
-
-    let position = navigator.geolocation.getCurrentPosition(position => {
+     
+    navigator.geolocation.getCurrentPosition(position => {
         let lat = position.coords.latitude
         let lon = position.coords.longitude
 
